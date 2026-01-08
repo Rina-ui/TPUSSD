@@ -331,7 +331,6 @@ class _HomeState extends State<Home> {
   }
 
   void _showAmountDialog(BuildContext context, Map<String, dynamic> item) {
-    final parentContext = context;
     TextEditingController amountController = TextEditingController();
 
     final itemColor = item["color"] as Color;
@@ -442,7 +441,8 @@ class _HomeState extends State<Home> {
                           String input = amountController.text.trim();
 
                           if (input.isEmpty) {
-                            ScaffoldMessenger.of(parentContext).showSnackBar(
+                            if (!mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: const Text('Veuillez entrer un montant'),
                                 backgroundColor: const Color(0xFFEF4444),
@@ -459,8 +459,8 @@ class _HomeState extends State<Home> {
 
                           if (amount != null && amount > 0) {
                             Navigator.pop(dialogContext);
-
-                            ScaffoldMessenger.of(parentContext).showSnackBar(
+                            if (!mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Row(
                                   children: [
@@ -481,7 +481,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 backgroundColor: itemColor,
                                 behavior: SnackBarBehavior.floating,
-                                shape: RoundedRectangleBorder(
+                                shape: RoundedRectangleBody(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 duration: const Duration(seconds: 3),
@@ -490,7 +490,8 @@ class _HomeState extends State<Home> {
 
                             print("$itemText - Montant: $amount FCFA");
                           } else {
-                            ScaffoldMessenger.of(parentContext).showSnackBar(
+                            if (!mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: const Text(
                                     'Montant invalide (doit être > 0)'),

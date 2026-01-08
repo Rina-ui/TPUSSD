@@ -385,6 +385,7 @@ class _PayementState extends State<Payement> {
                           String input = amountController.text.trim();
 
                           if (input.isEmpty) {
+                            if (!mounted) return;
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content:
@@ -403,7 +404,7 @@ class _PayementState extends State<Payement> {
 
                           if (amount != null && amount > 0) {
                             Navigator.pop(dialogContext);
-
+                            if (!mounted) return;
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content: Row(
@@ -434,6 +435,7 @@ class _PayementState extends State<Payement> {
 
                             print("$itemText - Montant: $amount FCFA");
                           } else {
+                            if (!mounted) return;
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content: const Text('Montant invalide'),
