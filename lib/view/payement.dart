@@ -70,7 +70,7 @@ class _PayementState extends State<Payement> {
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withAlpha(12),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -123,7 +123,7 @@ class _PayementState extends State<Payement> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withOpacity(0.3),
+                      color: const Color(0xFF6366F1).withAlpha(76),
                       blurRadius: 20,
                       offset: const Offset(0, 10),
                     ),
@@ -137,7 +137,7 @@ class _PayementState extends State<Payement> {
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withAlpha(51),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Icon(
@@ -207,7 +207,7 @@ class _PayementState extends State<Payement> {
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.04),
+                              color: Colors.black.withAlpha(10),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             ),
@@ -222,7 +222,7 @@ class _PayementState extends State<Payement> {
                                 width: 56,
                                 height: 56,
                                 decoration: BoxDecoration(
-                                  color: itemColor.withOpacity(0.1),
+                                  color: itemColor.withAlpha(25),
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Icon(
@@ -291,7 +291,7 @@ class _PayementState extends State<Payement> {
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    color: itemColor.withOpacity(0.1),
+                    color: itemColor.withAlpha(25),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Icon(
@@ -331,7 +331,7 @@ class _PayementState extends State<Payement> {
                   decoration: InputDecoration(
                     hintText: "0",
                     hintStyle: TextStyle(
-                      color: const Color(0xFF94A3B8).withOpacity(0.5),
+                      color: const Color(0xFF94A3B8).withAlpha(128),
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -385,7 +385,6 @@ class _PayementState extends State<Payement> {
                           String input = amountController.text.trim();
 
                           if (input.isEmpty) {
-                            if (!mounted) return;
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content:
@@ -404,7 +403,7 @@ class _PayementState extends State<Payement> {
 
                           if (amount != null && amount > 0) {
                             Navigator.pop(dialogContext);
-                            if (!mounted) return;
+
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content: Row(
@@ -433,9 +432,7 @@ class _PayementState extends State<Payement> {
                               ),
                             );
 
-                            print("$itemText - Montant: $amount FCFA");
                           } else {
-                            if (!mounted) return;
                             ScaffoldMessenger.of(parentContext).showSnackBar(
                               SnackBar(
                                 content: const Text('Montant invalide'),
