@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
+
 class UssdField {
   final String name;
-  final String type;
+  final TextInputType type;
   final bool isObscured;
 
   UssdField ({

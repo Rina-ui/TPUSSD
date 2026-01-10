@@ -1,12 +1,12 @@
 import 'package:coursflutter/domain/entities/ussd_code.dart';
 import 'package:flutter/cupertino.dart';
 
-class categorie {
+class Categorie {
   final String name;
   final IconData icon;
-  final List<ussdCode> code;
+  final List<UssdCode> code;
 
-  categorie ({
+  Categorie ({
     required this.name,
     required this.icon,
     required this.code

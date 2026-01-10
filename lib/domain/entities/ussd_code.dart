@@ -1,13 +1,13 @@
 import 'package:coursflutter/domain/entities/ussd_field.dart';
 import 'package:flutter/cupertino.dart';
 
-class ussdCode {
+class UssdCode {
   final String code;
   final String description;
   final IconData icon;
   final List<UssdField> fields;
 
-  ussdCode({
+  UssdCode({
     required this.code,
     required this.description,
     required this.icon,

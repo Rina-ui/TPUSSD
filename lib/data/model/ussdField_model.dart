@@ -1,10 +1,11 @@
 import 'package:coursflutter/domain/entities/ussd_field.dart';
+import 'package:flutter/material.dart';
 
 class UssdfieldModel extends UssdField{
 
    UssdfieldModel ({
     required String name,
-    required String type,
+    required TextInputType type,
     required bool isObscured
 }) : super (
     name: name,
@@ -15,9 +16,22 @@ class UssdfieldModel extends UssdField{
   factory UssdfieldModel.fromJson(Map<String, dynamic> json) {
     return UssdfieldModel(
       name: json['name'],
-      type: json['type'],
-      isObscured: json['isObscured']
+      type: TextInputType.values.firstWhere(
+          (e) {
+            return e.toString() == json['type'];
+          }
+      ),
+      isObscured: json['isObscured'] ?? false,
     );
   }
+
+   Map<String, dynamic> toJson() {
+     return {
+       'name': name,
+       'type': type.toString(),
+       'isObscured': isObscured,
+     };
+   }
+
 
 }

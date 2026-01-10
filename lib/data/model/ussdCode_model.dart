@@ -1,26 +1,41 @@
+import 'package:coursflutter/data/model/ussdField_model.dart';
 import 'package:coursflutter/domain/entities/ussd_code.dart';
-import 'package:coursflutter/domain/entities/ussd_field.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class ussdCodeModel extends ussdCode {
+class UssdCodeModel extends UssdCode {
+  final List<UssdfieldModel> fields;
 
-  ussdCodeModel({
+  UssdCodeModel({
     required String code,
     required String description,
     required IconData icon,
-    required List<UssdField> fields,
-}) : super (
+    required this.fields,
+  }) : super(
     code: code,
     description: description,
     icon: icon,
   );
 
-  factory ussdCodeModel.fromJson(Map<String, dynamic> json) {
-    return ussdCodeModel(
-        code: json['code'],
-      description: json['descirption'],
-      icon: json['icon'],
-      fields: json['fileds']
+  factory UssdCodeModel.fromJson(Map<String, dynamic> json) {
+    return UssdCodeModel(
+      code: json['code'],
+      description: json['description'],
+      icon: IconData(
+        json['icon'],
+        fontFamily: 'MaterialIcons',
+      ),
+      fields: (json['fields'] as List)
+          .map((f) => UssdfieldModel.fromJson(f))
+          .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'code': code,
+      'description': description,
+      'icon': icon.codePoint,
+      'fields': fields.map((f) => f.toJson()).toList(),
+    };
   }
 }
